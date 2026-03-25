@@ -1,49 +1,49 @@
+// Clase Pila implementada manualmente (NO se usa java.util.Stack)
 public class Pila {
 
-    // La cima de la pila (último elemento agregado)
-    private Nodo cima;
+    private Nodo cima;  // Referencia al nodo que está en la cima de la pila
 
-    // Constructor
+    // Constructor que inicializa la pila vacía
     public Pila() {
-        cima = null; // pila inicia vacía
+        cima = null; // La pila inicia sin elementos
     }
 
-    // Método para apilar (push)
-    public void push(String simbolo, int linea, int columna) {
-        Nodo nuevo = new Nodo(simbolo, linea, columna);
+    // Método push: apilar un elemento
+    public void push(char simbolo, int linea, int columna) {
 
-        // El nuevo nodo apunta a la antigua cima
-        nuevo.siguiente = cima;
+        Nodo nuevo = new Nodo(simbolo, linea, columna); // Se crea un nuevo nodo
 
-        // Ahora el nuevo nodo es la cima
-        cima = nuevo;
+        nuevo.siguiente = cima; // El nuevo nodo apunta al nodo que estaba en la cima
+
+        cima = nuevo; // La cima ahora es el nuevo nodo
     }
 
-    // Método para desapilar (pop)
+    // Método pop: desapilar un elemento
     public Nodo pop() {
-        if (isEmpty()) {
-            throw new RuntimeException("Error: Pila vacía");
+
+        if (isEmpty()) { // Verifica si la pila está vacía
+            throw new RuntimeException("Error: Pila vacía"); // Lanza error si no hay elementos
         }
 
-        // Guardamos la cima actual
-        Nodo temp = cima;
+        Nodo temp = cima; // Guarda el nodo actual de la cima
 
-        // La cima pasa a ser el siguiente nodo
-        cima = cima.siguiente;
+        cima = cima.siguiente; // La cima pasa a ser el siguiente nodo
 
-        return temp;
+        return temp; // Retorna el nodo eliminado
     }
 
-    // Ver el elemento en la cima sin eliminarlo
+    // Método peek: ver el elemento en la cima sin eliminarlo
     public Nodo peek() {
-        if (isEmpty()) {
-            throw new RuntimeException("Error: Pila vacía");
+
+        if (isEmpty()) { // Verifica si está vacía
+            throw new RuntimeException("Error: Pila vacía"); // Lanza error si no hay elementos
         }
-        return cima;
+
+        return cima; // Retorna la cima
     }
 
-    // Verificar si la pila está vacía
+    // Método isEmpty: verifica si la pila está vacía
     public boolean isEmpty() {
-        return cima == null;
+        return cima == null; // Retorna true si no hay elementos
     }
 }
